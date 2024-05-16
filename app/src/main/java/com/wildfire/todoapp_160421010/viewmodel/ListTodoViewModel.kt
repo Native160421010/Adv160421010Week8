@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.wildfire.todoapp_160421010.model.Todo
 import com.wildfire.todoapp_160421010.model.TodoDatabase
+import com.wildfire.todoapp_160421010.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -38,9 +39,7 @@ class ListTodoViewModel(application: Application)
 
     fun clearTask(todo: Todo) {
         launch {
-            val db = TodoDatabase.buildDatabase(
-                getApplication()
-            )
+            val db = buildDb(getApplication())
             db.todoDao().deleteTodo(todo)
 
             todoLD.postValue(db.todoDao().selectAllTodo())

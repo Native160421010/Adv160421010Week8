@@ -8,15 +8,26 @@
     <fragment
         android:id="@+id/todoListFragment"
         android:name="com.wildfire.todoapp_160421010.view.TodoListFragment"
-        android:label="fragment_todo_list"
-        tools:layout="@layout/fragment_todo_list" >
+        android:label="Home"
+        tools:layout="@layout/fragment_todo_list">
         <action
             android:id="@+id/actionCreateTodo"
             app:destination="@id/createTodoFragment" />
+        <action
+            android:id="@+id/actionEditTodo"
+            app:destination="@id/editTodoFragment" />
     </fragment>
     <fragment
         android:id="@+id/createTodoFragment"
         android:name="com.wildfire.todoapp_160421010.view.CreateTodoFragment"
-        android:label="fragment_create_todo"
+        android:label="Create ToDo"
         tools:layout="@layout/fragment_create_todo" />
+    <fragment
+        android:id="@+id/editTodoFragment"
+        android:name="com.wildfire.todoapp_160421010.view.EditTodoFragment"
+        android:label="Edit ToDo">
+        <argument
+            android:name="uuid"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -39,7 +39,7 @@
             android:layout_marginBottom="32dp"
             android:clickable="true"
             android:pointerIcon="wait"
-            android:src="@drawable/annoying_pencil"
+            android:src="@drawable/annoying_pencil_edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

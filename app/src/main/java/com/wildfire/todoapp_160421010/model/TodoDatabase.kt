@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.wildfire.todoapp_160421010.util.DB_NAME
+import com.wildfire.todoapp_160421010.util.MIGRATION_1_2
 
-@Database(entities = arrayOf(Todo::class), version =  1)
+@Database(entities = arrayOf(Todo::class), version =  2)
 abstract class TodoDatabase:RoomDatabase() {
     abstract fun todoDao(): TodoDao
 
@@ -13,11 +15,11 @@ abstract class TodoDatabase:RoomDatabase() {
         @Volatile private var instance: TodoDatabase ?= null
         private val LOCK = Any()
 
-        fun buildDatabase(context:Context) =
-            Room.databaseBuilder(
-                context.applicationContext,
-                TodoDatabase::class.java,
-                "newtododb").build()
+        fun buildDatabase(context:Context) = Room.databaseBuilder(
+            context.applicationContext,
+            TodoDatabase::class.java, DB_NAME)
+            .addMigrations(MIGRATION_1_2)
+            .build()
 
         operator fun invoke(context:Context) {
             if(instance!=null) {

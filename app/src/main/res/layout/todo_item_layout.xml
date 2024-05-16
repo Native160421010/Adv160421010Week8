@@ -19,4 +19,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imgEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/checkTask"
+        app:layout_constraintEnd_toEndOf="@+id/checkTask"
+        app:layout_constraintTop_toTopOf="@+id/checkTask"
+        app:srcCompat="@drawable/annoying_pencil_edit" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

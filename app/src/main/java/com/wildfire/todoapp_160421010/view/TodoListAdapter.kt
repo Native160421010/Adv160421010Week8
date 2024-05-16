@@ -2,6 +2,7 @@ package com.wildfire.todoapp_160421010.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.wildfire.todoapp_160421010.databinding.TodoItemLayoutBinding
 import com.wildfire.todoapp_160421010.model.Todo
@@ -25,6 +26,13 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) 
             if(compoundButton.isPressed) {
                 adapterOnClick(todoList[position])
             }
+        }
+
+        holder.binding.imgEdit.setOnClickListener {
+            val action =
+                TodoListFragmentDirections.actionEditTodo(todoList[position].uuid)
+
+            Navigation.findNavController(it).navigate(action)
         }
 
     }
