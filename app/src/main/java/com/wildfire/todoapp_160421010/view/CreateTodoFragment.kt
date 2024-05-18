@@ -30,7 +30,6 @@ class CreateTodoFragment : Fragment() {
         viewModel =
             ViewModelProvider(this).get(DetailTodoViewModel::class.java)
 
-
         binding.btnAdd.setOnClickListener {
             var radio = view.findViewById<RadioButton>(binding.RadioGroupPriority.checkedRadioButtonId)
 

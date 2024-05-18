@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.wildfire.todoapp_160421010.R
 import com.wildfire.todoapp_160421010.databinding.FragmentTodoListBinding
 import com.wildfire.todoapp_160421010.viewmodel.ListTodoViewModel
 
