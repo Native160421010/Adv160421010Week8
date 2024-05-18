@@ -19,7 +19,8 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) 
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.binding.checkTask.text = todoList[position].title + " (" + todoList[position].notes + ")"
+        holder.binding.checkTask.text = todoList[position].title
+        holder.binding.txtNotesToDo.text = todoList[position].notes
 
         holder.binding.checkTask.setOnCheckedChangeListener {
                 compoundButton, b ->

@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wildfire.todoapp_160421010.databinding.FragmentTodoListBinding
+import com.wildfire.todoapp_160421010.model.Todo
 import com.wildfire.todoapp_160421010.viewmodel.ListTodoViewModel
 
 class TodoListFragment : Fragment() {
@@ -27,20 +30,26 @@ class TodoListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(ListTodoViewModel::class.java)
-        viewModel.refresh()
+        viewModel.refresh(0)
         binding.recViewToDo.layoutManager = LinearLayoutManager(context)
         binding.recViewToDo.adapter = todoListAdapter
 
-        // ??? binding.fabAddTodo.setOnClickListener
         binding.btnFab.setOnClickListener {
             val action = TodoListFragmentDirections.actionCreateTodo()
             Navigation.findNavController(it).navigate(action)
         }
 
+        binding.radioGroupToDoState.setOnCheckedChangeListener{ group, checkedId ->
+            val radio = view.findViewById<RadioButton>(checkedId)
+            val radioButtonTag = radio.tag.toString().toInt()
+
+            viewModel.refresh(radioButtonTag)
+        }
+
         observeViewModel()
     }
 
-    fun observeViewModel() {
+    private fun observeViewModel() {
         viewModel.todoLD.observe(viewLifecycleOwner, Observer {
             todoListAdapter.updateTodoList(it)
             if(it.isEmpty()) {

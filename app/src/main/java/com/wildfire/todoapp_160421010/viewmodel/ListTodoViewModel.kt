@@ -24,7 +24,7 @@ class ListTodoViewModel(application: Application)
         get() = job + Dispatchers.IO
 
 
-    fun refresh() {
+    fun refresh(isDone: Int) {
         loadingLD.value = true
         todoLoadErrorLD.value = false
         launch {
@@ -32,7 +32,7 @@ class ListTodoViewModel(application: Application)
                 getApplication()
             )
 
-            todoLD.postValue(db.todoDao().selectAllTodo())
+            todoLD.postValue(db.todoDao().selectAllTodo(isDone))
             loadingLD.postValue(false)
         }
     }
@@ -41,7 +41,7 @@ class ListTodoViewModel(application: Application)
         launch {
             val db = buildDb(getApplication())
             db.todoDao().updateTodo(todo.uuid)
-            todoLD.postValue(db.todoDao().selectAllTodo())
+            todoLD.postValue(db.todoDao().selectAllTodo(0))
         }
     }
 

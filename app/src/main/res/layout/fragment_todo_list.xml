@@ -13,6 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recViewToDo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupToDoState">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
         <TextView
             android:id="@+id/txtEmpty"
             android:layout_width="wrap_content"
@@ -21,14 +33,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/recViewToDo"
             app:layout_constraintEnd_toEndOf="@+id/recViewToDo"
             app:layout_constraintStart_toStartOf="@+id/recViewToDo"
-            app:layout_constraintTop_toTopOf="@+id/recViewToDo" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recViewToDo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toTopOf="@+id/radioGroupToDoState" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnFab"
@@ -49,8 +54,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Error while loading!"
-            tools:layout_editor_absoluteX="146dp"
-            tools:layout_editor_absoluteY="356dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/radioGroupToDoState" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -58,8 +65,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            tools:layout_editor_absoluteX="182dp"
-            tools:layout_editor_absoluteY="342dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupToDoState"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioToDo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:paddingRight="50dp"
+                android:tag="0"
+                android:text="ToDo" />
+
+            <RadioButton
+                android:id="@+id/radioDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="1"
+                android:text="Completed" />
+
+        </RadioGroup>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
