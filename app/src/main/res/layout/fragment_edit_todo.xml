@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="todo"
+            type="com.wildfire.todoapp_160421010.model.Todo" />
+        <variable
+            name="radioListener"
+            type="com.wildfire.todoapp_160421010.view.RadioClick" />
+        <variable
+            name="saveListener"
+            type="com.wildfire.todoapp_160421010.view.TodoSaveChangesClick" />
     </data>
 
     <FrameLayout
@@ -22,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="128dp"
-                android:text="New ToDo"
+                android:text="@={todo.title}"
                 android:textSize="48sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +54,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@={todo.title}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -66,7 +75,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtNotes"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@={todo.notes}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -75,8 +85,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:text="Priority"
                 android:textStyle="bold"
+                android:text="Priority"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutNotes" />
 
@@ -93,8 +103,9 @@
                     android:id="@+id/radioHigh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:tag="3"
+                    android:checked="@{todo.priority==3?true:false}"
+                    android:onClick="@{(view)->radioListener.onRadioClick(view,3, todo)}"
                     android:text="High Priority" />
 
                 <RadioButton
@@ -102,6 +113,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:tag="2"
+                    android:checked="@{todo.priority==2?true:false}"
+                    android:onClick="@{(view)->radioListener.onRadioClick(view,2, todo)}"
                     android:text="Medium Priority" />
 
                 <RadioButton
@@ -109,6 +122,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:tag="1"
+                    android:checked="@{todo.priority==1?true:false}"
+                    android:onClick="@{(view)->radioListener.onRadioClick(view,1, todo)}"
                     android:text="Low Priority" />
             </RadioGroup>
 
@@ -118,9 +133,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="ADD TODO"
+                android:onClick="@{(view) -> saveListener.onTodoSaveChangesClick(view,todo)}"
+                android:text="EDIT TODO"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/RadioGroupPriority" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>
+

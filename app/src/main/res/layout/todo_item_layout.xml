@@ -1,44 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <CheckBox
-        android:id="@+id/checkTask"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:text="CheckBox"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable name="todo" type="com.wildfire.todoapp_160421010.model.Todo" />
+        <variable
+            name="listener"
+            type="com.wildfire.todoapp_160421010.view.TodoCheckedChangeListener" />
+        <variable
+            name="editListener"
+            type="com.wildfire.todoapp_160421010.view.TodoEditClick" />
+    </data>
 
-    <ImageView
-        android:id="@+id/imgEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkTask"
-        app:layout_constraintEnd_toEndOf="@+id/checkTask"
-        app:layout_constraintTop_toTopOf="@+id/checkTask"
-        app:srcCompat="@drawable/annoying_pencil_edit" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txtNotesToDo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:text="Detail"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkTask" />
+        <CheckBox
+            android:id="@+id/checkTask"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="@{todo.title}"
+            android:textStyle="italic"
+            android:onCheckedChanged= "@{(cb, isChecked) -> listener.onCheckedChanged(cb, isChecked, todo)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <!--NEXT SLIDE: 23-->
+
+        <ImageView
+            android:id="@+id/imgEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:tag="@{todo.uuid}"
+            android:onClick="@{editListener::onTodoEditClick}"
+            app:layout_constraintBottom_toBottomOf="@+id/checkTask"
+            app:layout_constraintEnd_toEndOf="@+id/checkTask"
+            app:layout_constraintTop_toTopOf="@+id/checkTask"
+            app:srcCompat="@drawable/annoying_pencil_edit" />
+
+        <TextView
+            android:id="@+id/txtNotesToDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:text="@{todo.notes}"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkTask" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

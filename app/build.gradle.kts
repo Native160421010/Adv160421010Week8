@@ -39,8 +39,9 @@ android {
     // NEW!
     buildFeatures {
         viewBinding = true
+        // NEW! Week 10
+        dataBinding = true
     }
-
 }
 
 dependencies {

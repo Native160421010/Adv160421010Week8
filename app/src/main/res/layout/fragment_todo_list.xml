@@ -17,7 +17,6 @@
             android:id="@+id/recViewToDo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +32,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/recViewToDo"
             app:layout_constraintEnd_toEndOf="@+id/recViewToDo"
             app:layout_constraintStart_toStartOf="@+id/recViewToDo"
-            app:layout_constraintTop_toTopOf="@+id/radioGroupToDoState" />
+            app:layout_constraintTop_toTopOf="@+id/recViewToDo" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnFab"
@@ -54,10 +53,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Error while loading!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/radioGroupToDoState" />
+            app:layout_constraintBottom_toBottomOf="@+id/recViewToDo"
+            app:layout_constraintEnd_toEndOf="@+id/recViewToDo"
+            app:layout_constraintStart_toStartOf="@+id/recViewToDo"
+            app:layout_constraintTop_toTopOf="@+id/recViewToDo" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -67,7 +66,7 @@
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/recViewToDo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
